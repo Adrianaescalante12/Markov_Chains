@@ -41,37 +41,24 @@ def make_chains(text_string):
     chains = {}
     # split up string and put in list
         # - print it to make sure its printing a list
-    words = text_string.split()
-    # for loop:
+        # for loop:
         # -set an i variable
     #     - for index in the len(list above):
     #         pairs = listabove[i:i+1]
     #         chain_key = (words[i], words[i + 1])
     #         chain_value = words[i + 2]
     #         chains[chain_key] = chains.get(chain_key, [])
-    
     # # keep track of pairs
+    
+    words = text_string.split()
     for i in range(0, len(words)-2):
         chain_key = (words[i], words[i+1])
-        # chain_key = ('Would, you')
-        #chains[chain_key] = ['could', 'could']
-        # word_to_add = 'like'
-        # 
-
         chains[chain_key] = chains.get(chain_key, list([]))
-        # print(f"---chains: {chains}")
         word_to_add = words[i+2]
-        # print(f"---word_to_add: {word_to_add}")
         chain_value = chains[chain_key]
-        # print(f"----chain_value: {chain_value}")
-        if type(chain_value) is list:
-            chain_value.append(word_to_add)
-            # print(f"---chain_value in conditional: {chain_value}")
-  
-        chains[chain_key] = chain_value
-        # print(f"----chains at this iteration: {chains}")
-        # chains[chain_key] = chains[chain_key].append(chain_value)
-        # chains[chain_key] = chain_value
+        
+        chain_value.append(word_to_add)
+
 
     return chains
 
