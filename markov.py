@@ -1,6 +1,6 @@
 """Generate Markov text from text files."""
 
-from random import choice
+import random
 
 
 def open_and_read_file(file_path):
@@ -67,8 +67,25 @@ def make_text(chains):
     """Return text from chains."""
 
     words = []
+    
+    # choose a random first link for the random text that will be generated
+    keys_list = list(chains.keys())
+    # print(keys_list)
+    # print(random.choice(my_list))
+    first_link = random.choice(keys_list)
+    words.extend(first_link)
+    chain_key = first_link
+    
+    while True:
+        if chain_key in chains:
+            chain_value = chains[chain_key]
+            random_value = random.choice(chain_value)
+            words.append(random_value)
+            chain_key = tuple((chain_key[1],random_value))
+        else:
+            break
 
-    # your code goes here
+   
 
     return ' '.join(words)
 
@@ -80,9 +97,9 @@ input_text = open_and_read_file(input_path)
 
 # Get a Markov chain
 chains = make_chains(input_text)
-print(chains)
+# print(chains)
 
-# # Produce random text
-# random_text = make_text(chains)
+# Produce random text
+random_text = make_text(chains)
 
-# print(random_text)
+print(random_text)
